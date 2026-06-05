@@ -14,12 +14,12 @@ export default function Hero() {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col items-start"
+            className="flex flex-col items-start lg:w-3/5"
           >
             <motion.h1 
               className="text-5xl md:text-7xl lg:text-8xl font-bold font-heading leading-tight mb-4"
@@ -60,11 +60,11 @@ export default function Hero() {
                 onClick={scrollToContact}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full overflow-hidden shadow-[0_0_30px_rgba(139,92,246,0.3)]"
+                className="group relative px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,163,255,0.3)] hover:shadow-[0_0_30px_rgba(0,163,255,0.5)] transition-shadow"
               >
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 <span className="relative flex items-center gap-2">
-                  Connect With Me
+                  Get In Touch
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </motion.button>
@@ -75,6 +75,23 @@ export default function Hero() {
                 <SocialLink href="mailto:ishikapandey0011@gmail.com" icon={<Mail size={22} />} label="Email" />
               </div>
             </motion.div>
+          </motion.div>
+
+          <motion.div 
+            className="lg:w-2/5 flex justify-center relative z-20"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full p-2 glass border-primary/30 z-20 shadow-[0_0_40px_rgba(139,92,246,0.2)] hover:shadow-[0_0_60px_rgba(139,92,246,0.4)] transition-shadow duration-500">
+              <img 
+                src="/profile.png" 
+                alt="Ishika Pandey" 
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
+            {/* Background glowing circle for the image */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-tr from-primary/30 to-accent/30 rounded-full blur-[50px] -z-10" />
           </motion.div>
         </div>
 

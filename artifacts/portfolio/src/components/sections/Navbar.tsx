@@ -69,14 +69,15 @@ export default function Navbar() {
             </motion.a>
           ))}
           <motion.a
-            href="#contact"
-            onClick={(e) => { e.preventDefault(); scrollToSection("#contact"); }}
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6 }}
-            className="px-5 py-2.5 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all duration-300 text-sm font-semibold"
+            className="px-5 py-2.5 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_rgba(0,163,255,0.4)] transition-all duration-300 text-sm font-semibold flex items-center gap-2"
           >
-            Hire Me
+            Download Resume
           </motion.a>
         </nav>
 

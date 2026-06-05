@@ -6,19 +6,19 @@ const certifications = [
     title: "Microsoft Azure Fundamentals",
     issuer: "Microsoft",
     icon: <ShieldCheck className="w-8 h-8 text-accent" />,
-    color: "border-accent/30 hover:border-accent shadow-[0_0_0_rgba(6,182,212,0)] hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]"
+    color: "border-accent/30 hover:border-accent hover:shadow-lg hover:shadow-accent/20"
   },
   {
     title: "SQL (Basic to Intermediate)",
     issuer: "HackerRank Certified",
-    icon: <CheckCircle className="w-8 h-8 text-green-400" />,
-    color: "border-green-400/30 hover:border-green-400 shadow-[0_0_0_rgba(74,222,128,0)] hover:shadow-[0_0_20px_rgba(74,222,128,0.2)]"
+    icon: <CheckCircle className="w-8 h-8 text-secondary" />,
+    color: "border-secondary/30 hover:border-secondary hover:shadow-lg hover:shadow-secondary/20"
   },
   {
     title: "Python, MySQL, Data Science, Power BI",
     issuer: "TestDome Certified",
     icon: <Award className="w-8 h-8 text-primary" />,
-    color: "border-primary/30 hover:border-primary shadow-[0_0_0_rgba(139,92,246,0)] hover:shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+    color: "border-primary/30 hover:border-primary hover:shadow-lg hover:shadow-primary/20"
   }
 ];
 

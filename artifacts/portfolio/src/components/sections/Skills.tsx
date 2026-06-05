@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { 
-  SiPython, SiMysql, SiJavascript, SiHtml5, SiCss3, SiFlask, SiDjango, 
-  SiGit, SiVisualstudiocode, SiPandas, SiNumpy, SiScikitlearn 
+  SiPython, SiMysql, SiJavascript, SiFlask, SiDjango, 
+  SiGit, SiPandas, SiNumpy, SiScikitlearn 
 } from "react-icons/si";
 
 const skillCategories = [

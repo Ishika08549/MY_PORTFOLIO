@@ -71,10 +71,10 @@ export default function About() {
               delay={0.2}
             />
             <InfoCard 
-              icon={<Zap className="text-green-400" />}
-              title="Energy"
-              content="Young, Ambitious"
-              sub="Technically Elite"
+              icon={<Zap className="text-primary" />}
+              title="Core Focus"
+              content="Scalable Systems"
+              sub="Data-Driven Insights"
               delay={0.3}
             />
           </motion.div>

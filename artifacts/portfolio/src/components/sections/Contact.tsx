@@ -1,7 +1,23 @@
 import { motion } from "framer-motion";
 import { Mail, Linkedin, Github, Send } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") || "Guest";
+    
+    toast({
+      title: "Message Sent!",
+      description: `Thanks for reaching out, ${name}. I'll get back to you soon.`,
+    });
+    
+    e.currentTarget.reset();
+  };
+
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       {/* Abstract background */}
@@ -61,12 +77,14 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <form className="glass-panel p-8 rounded-2xl border border-white/5 space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="glass-panel p-8 rounded-2xl border border-white/5 space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">Name</label>
                 <input 
                   type="text" 
                   id="name" 
+                  name="name"
+                  required
                   className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-colors"
                   placeholder="John Doe"
                 />
@@ -76,6 +94,8 @@ export default function Contact() {
                 <input 
                   type="email" 
                   id="email" 
+                  name="email"
+                  required
                   className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-colors"
                   placeholder="john@example.com"
                 />
@@ -84,12 +104,15 @@ export default function Contact() {
                 <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-2">Message</label>
                 <textarea 
                   id="message" 
+                  name="message"
+                  required
                   rows={4}
                   className="w-full bg-background/50 border border-white/10 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-colors resize-none"
                   placeholder="Hello Ishika..."
                 />
               </div>
               <motion.button
+                type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-[0_0_20px_rgba(139,92,246,0.2)]"
