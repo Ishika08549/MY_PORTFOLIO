@@ -21,14 +21,6 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="flex flex-col items-start"
           >
-            <motion.div 
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border-primary/30 text-primary mb-6"
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(139, 92, 246, 0.15)" }}
-            >
-              <Terminal size={14} />
-              <span className="text-xs font-mono tracking-wider font-semibold">Hello, World! I am</span>
-            </motion.div>
-
             <motion.h1 
               className="text-5xl md:text-7xl lg:text-8xl font-bold font-heading leading-tight mb-4"
               initial={{ opacity: 0, y: 20 }}
