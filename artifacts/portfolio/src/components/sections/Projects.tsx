@@ -75,7 +75,7 @@ export default function Projects() {
                     {project.icon}
                   </div>
                   <div className="flex gap-3">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
+                    <a aria-label={`View ${project.title} on GitHub`} href={project.link} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
                       <Github size={20} />
                     </a>
                   </div>
