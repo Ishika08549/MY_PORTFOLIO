@@ -5,17 +5,42 @@ import { useToast } from "@/hooks/use-toast";
 export default function Contact() {
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") || "Guest";
     
-    toast({
-      title: "Message Sent!",
-      description: `Thanks for reaching out, ${name}. I'll get back to you soon.`,
-    });
-    
-    e.currentTarget.reset();
+    // Web3Forms integration
+    formData.append("access_key", "90aa98fd-92f5-4930-95ad-55c3d7796845");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Message Sent!",
+          description: `Thanks for reaching out, ${name}. I'll get back to you soon.`,
+        });
+        e.currentTarget.reset();
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again later.",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An error occurred while sending the message.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
