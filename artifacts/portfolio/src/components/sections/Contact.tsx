@@ -10,8 +10,10 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget; // Capture synchronously
     setIsSubmitting(true);
-    const formData = new FormData(e.currentTarget);
+    
+    const formData = new FormData(form);
     const name = formData.get("name") || "Guest";
     
     // Web3Forms integration
@@ -27,13 +29,16 @@ export default function Contact() {
       });
 
       const data = await response.json();
+      
+      // I temporarily logged the response here during my trace to verify the 200 OK
+      // console.log("Web3Forms API Response:", { status: response.status, data });
 
       if (response.ok && data.success) {
         toast({
           title: "Message sent successfully!",
           description: `Thanks for reaching out, ${name}. I'll get back to you soon.`,
         });
-        e.currentTarget.reset();
+        form.reset(); // Use the captured form instead of e.currentTarget
       } else {
         toast({
           title: "Error",
