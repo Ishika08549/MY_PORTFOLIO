@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Linkedin, Github, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -5,8 +6,11 @@ import { useToast } from "@/hooks/use-toast";
 export default function Contact() {
   const { toast } = useToast();
 
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") || "Guest";
     
@@ -16,21 +20,24 @@ export default function Contact() {
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
+        headers: {
+          "Accept": "application/json"
+        },
         body: formData
       });
 
       const data = await response.json();
 
-      if (data.success) {
+      if (response.ok && data.success) {
         toast({
-          title: "Message Sent!",
+          title: "Message sent successfully!",
           description: `Thanks for reaching out, ${name}. I'll get back to you soon.`,
         });
         e.currentTarget.reset();
       } else {
         toast({
           title: "Error",
-          description: "Something went wrong. Please try again later.",
+          description: data.message || "Something went wrong. Please try again later.",
           variant: "destructive"
         });
       }
@@ -40,6 +47,8 @@ export default function Contact() {
         description: "An error occurred while sending the message.",
         variant: "destructive"
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -138,11 +147,12 @@ export default function Contact() {
               </div>
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+                disabled={isSubmitting}
+                whileHover={isSubmitting ? {} : { scale: 1.02 }}
+                whileTap={isSubmitting ? {} : { scale: 0.98 }}
+                className={`w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-[0_0_20px_rgba(139,92,246,0.2)] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
-                Send Message <Send size={18} />
+                {isSubmitting ? "Sending..." : "Send Message"} {!isSubmitting && <Send size={18} />}
               </motion.button>
             </form>
           </motion.div>
